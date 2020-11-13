@@ -12,6 +12,8 @@ class ColorPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+    final luminance = color.computeLuminance();
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
@@ -21,6 +23,9 @@ class ColorPage extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           color.toString(),
+          style: theme.textTheme.bodyText1.copyWith(
+            color: luminance < 0.5 ? Colors.white : Colors.black,
+          ),
         ),
       ),
     );
